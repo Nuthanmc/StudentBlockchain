@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BlockEdu - Student Result Blockchain System</title>
+  <meta name="description" content="Secure and transparent student result monitoring system using blockchain technology on Polygon">
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Header/Navbar -->
+  <header class="navbar">
+    <div class="container">
+      <div class="navbar-logo">
+        <i class="fas fa-graduation-cap"></i>
+        <span>BlockEdu Results</span>
+      </div>
+      
+      <nav class="navbar-menu" id="navbar-menu">
+        <ul>
+          <li><a href="#" class="active" data-page="home"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="#" data-page="results"><i class="fas fa-file-alt"></i> View Results</a></li>
+          <li><a href="#" data-page="upload"><i class="fas fa-upload"></i> Upload Results</a></li>
+          <li><a href="#" data-page="admin"><i class="fas fa-users-cog"></i> Admin Panel</a></li>
+          <li><a href="#" data-page="about"><i class="fas fa-info-circle"></i> About Us</a></li>
+
+        </ul>
+      </nav>
+          <li class="teacher-only hidden"><a href="#" data-page="upload"><i class="fas fa-upload"></i> Upload Results</a></li>
+          <li class="admin-only hidden"><a href="#" data-page="admin"><i class="fas fa-users-cog"></i> Admin Panel</a></li>
+        </ul>
+      </nav>
+      
+      <div class="navbar-actions">
+        <button id="connect-wallet" class="btn btn-light">Connect Wallet</button>
+        <button id="switch-network" class="btn btn-warning hidden">Switch to Polygon</button>
+        <div id="account-info" class="account-info hidden"></div>
+        
+
+      </div>
+      
+      <button class="navbar-toggle" id="navbar-toggle">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container" id="main-content">
+    <!-- Connect Wallet Notice -->
+    <div id="connect-wallet-notice" class="connect-wallet-notice">
+      <div class="notice-icon">
+        <i class="fas fa-wallet"></i>
+      </div>
+      <div class="notice-content">
+        <h3>Connect My Wallet</h3>
+        <p>Please connect your MetaMask wallet to access the blockchain features of this application.</p>
+        <button id="connect-wallet-btn" class="btn btn-primary">Connect Wallet</button>
+      </div>
+    </div>
+
+    <!-- Home Page -->
+    <section id="home-page" class="page active">
+      <!-- Hero Section -->
+      <div class="hero">
+        <i class="fas fa-graduation-cap hero-icon"></i>
+        <h1>Decentralized Result Verification</h1>
+        <p>Trust your Grades. Powered by Blockchain, Potected Forever</p>
+        <div class="hero-actions">
+          <button class="btn btn-light" data-page="results">Unlock Results</button>
+          <button class="btn btn-primary" data-page="upload">Upload Results</button>
+        </div>
+      </div>
+      
+      <!-- Features Section -->
+      <div class="section">
+        <h2 class="section-title">Key Features</h2>
+        <div class="features">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>Immutable Records</h3>
+            <p>Once uploaded to the blockchain, result records cannot be altered or tampered with, ensuring data integrity.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-database"></i>
+            </div>
+            <h3>Decentralized Storage</h3>
+            <p>Results are stored on the Polygon blockchain and IPFS, eliminating single points of failure.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-check-double"></i>
+            </div>
+            <h3>Verification System</h3>
+            <p>Easily verify the authenticity of any result using cryptographic proofs on the blockchain.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- How It Works Section -->
+      <div class="section card">
+        <h2 class="section-title">How It Works</h2>
+        <div class="workflow">
+          <div class="workflow-step">
+            <div class="step-number">1</div>
+            <h3>Authentication</h3>
+            <p>Teachers and administrators connect their MetaMask wallet to authenticate.</p>
+          </div>
+          
+          <div class="workflow-step">
+            <div class="step-number">2</div>
+            <h3>Result Upload</h3>
+            <p>Authorized users upload student results which are stored on IPFS.</p>
+          </div>
+          
+          <div class="workflow-step">
+            <div class="step-number">3</div>
+            <h3>Blockchain Storage</h3>
+            <p>Result hashes are stored on the Polygon blockchain for verification.</p>
+          </div>
+          
+          <div class="workflow-step">
+            <div class="step-number">4</div>
+            <h3>Result Verification</h3>
+            <p>Students can verify and access their results using their student ID.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Getting Started Section -->
+      <div class="section card">
+        <h2 class="section-title">Getting Started</h2>
+        <div class="getting-started">
+          <div class="getting-started-col">
+            <h3>For Students</h3>
+            <ul class="steps-list">
+              <li><span class="step-bullet">1</span> Navigate to the "View Results" page</li>
+              <li><span class="step-bullet">2</span> Enter your student ID to search for your results</li>
+              <li><span class="step-bullet">3</span> View and verify your results with blockchain proof</li>
+            </ul>
+            <a href="#" class="link-with-icon" data-page="results">
+              View Your Results <i class="fas fa-external-link-alt"></i>
+            </a>
+          </div>
+          
+          <div class="getting-started-col">
+            <h3>For Teachers & Administrators</h3>
+            <ul class="steps-list">
+              <li><span class="step-bullet">1</span> Connect your MetaMask wallet to authenticate</li>
+              <li><span class="step-bullet">2</span> Navigate to the "Upload Results" page</li>
+              <li><span class="step-bullet">3</span> Enter student details and upload results securely</li>
+            </ul>
+            <a href="#" class="link-with-icon" data-page="upload">
+              Upload Results <i class="fas fa-external-link-alt"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Blockchain Benefits -->
+      <div class="section dark">
+        <h2 class="section-title">Why Blockchain for Academic Results?</h2>
+        <div class="benefits">
+          <div class="benefit">
+            <h3>Tamper-Proof Records</h3>
+            <p>Blockchain's immutable nature ensures that once results are recorded, they cannot be altered or falsified.</p>
+          </div>
+          <div class="benefit">
+            <h3>Transparent Verification</h3>
+            <p>Anyone can verify the authenticity of results without relying on a central authority.</p>
+          </div>
+          <div class="benefit">
+            <h3>Reduced Fraud</h3>
+            <p>Eliminates the possibility of fake certificates and unauthorized result modifications.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- View Results Page -->
+    <section id="results-page" class="page">
+      <h1>View Student Results</h1>
+      
+      <div class="card">
+        <form id="search-results-form">
+          <div class="form-group">
+            <label for="student-id">Student ID</label>
+            <input type="text" id="student-id" placeholder="Enter your Student ID" required>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-search"></i> Unlock Results
+          </button>
+        </form>
+      </div>
+      
+      <div id="error-message" class="error-message hidden"></div>
+      
+      <div id="results-list" class="card hidden">
+        <h2>Results for Student ID: <span id="results-student-id"></span></h2>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Exam Name</th>
+                <th>Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="results-table-body">
+              <!-- Results will be populated here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <div id="result-details" class="card hidden">
+        <div class="result-header">
+          <h2 id="result-title"></h2>
+          <button id="back-to-results" class="btn btn-secondary">
+            Back to Results
+          </button>
+        </div>
+        
+        <div class="result-content">
+          <div class="result-info-grid">
+            <div class="result-info-card">
+              <h3>Student Information</h3>
+              <div class="info-container">
+                <p><strong>Name:</strong> <span id="student-name"></span></p>
+                <p><strong>Student ID:</strong> <span id="detail-student-id"></span></p>
+                <p><strong>Exam Date:</strong> <span id="exam-date"></span></p>
+              </div>
+            </div>
+            
+            <div class="result-info-card">
+              <h3>Result Summary</h3>
+              <div class="info-container">
+                <p><strong>Total Score:</strong> <span id="total-score"></span></p>
+                <p><strong>Percentage:</strong> <span id="percentage"></span></p>
+                <p><strong>Grade:</strong> <span id="grade"></span></p>
+              </div>
+            </div>
+          </div>
+          
+          <h3>Subject Marks</h3>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Subject</th>
+                  <th>Marks</th>
+                  <th>Percentage</th>
+                </tr>
+              </thead>
+              <tbody id="marks-table-body">
+                <!-- Marks will be populated here -->
+              </tbody>
+            </table>
+          </div>
+          
+          <div class="verification-info">
+            <h3>Verification Information</h3>
+            <div class="info-container">
+              <p><strong>Result ID:</strong> <span id="result-id"></span></p>
+              <p class="ipfs-hash">
+                <strong>IPFS Hash:</strong> 
+                <span id="ipfs-hash"></span>
+                <a id="ipfs-link" href="#" target="_blank" rel="noopener noreferrer">
+                  <i class="fas fa-external-link-alt"></i>
+                </a>
+              </p>
+              <p><strong>Uploaded By:</strong> <span id="uploaded-by"></span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Upload Results Page -->
+    <section id="upload-page" class="page">
+      <h1>Upload Student Results</h1>
+      
+      <div id="permission-error" class="error-message hidden">
+        <i class="fas fa-exclamation-triangle"></i>
+        <span>You don't have permission to upload results. Only teachers and administrators can upload results.</span>
+      </div>
+      
+      <div id="upload-success" class="success-message hidden">
+        <i class="fas fa-check-circle"></i>
+        <span>Result uploaded successfully!</span>
+        <p>Transaction Hash: <span id="tx-hash" class="monospace"></span></p>
+        <button id="upload-another" class="btn btn-success">Upload Another Result</button>
+      </div>
+      
+      <div id="upload-form-container" class="card">
+        <form id="upload-result-form">
+          <div id="upload-error" class="error-message hidden"></div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="upload-student-id">Student ID *</label>
+              <input type="text" id="upload-student-id" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="upload-student-name">Student Name *</label>
+              <input type="text" id="upload-student-name" required>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="exam-name">Exam Name *</label>
+            <input type="text" id="exam-name" required>
+          </div>
+          
+          <div class="form-group">
+            <div class="subject-header">
+              <label>Subject Marks *</label>
+              <button type="button" id="add-subject" class="btn-text">
+                <i class="fas fa-plus"></i> Add Subject
+              </button>
+            </div>
+            
+            <div id="subjects-container">
+              <div class="subject-row">
+                <div class="subject-name">
+                  <input type="text" placeholder="Subject Name" required>
+                </div>
+                <div class="subject-score">
+                  <input type="number" placeholder="Score" min="0" required>
+                </div>
+                <div class="subject-max">
+                  <span>/</span>
+                  <input type="number" placeholder="Max Score" min="1" value="100" required>
+                </div>
+                <div class="subject-action">
+                  <!-- Remove button will be added for additional subjects -->
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="result-summary card-light">
+            <h3>Result Summary</h3>
+            <div class="summary-grid">
+              <div>
+                <span class="summary-label">Total Score</span>
+                <p id="summary-total">0/100</p>
+              </div>
+              <div>
+                <span class="summary-label">Percentage</span>
+                <p id="summary-percentage">0.00%</p>
+              </div>
+              <div>
+                <span class="summary-label">Grade</span>
+                <p id="summary-grade">F</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-actions">
+            <button type="submit" id="submit-result" class="btn btn-primary">
+              <i class="fas fa-upload"></i> Upload Result
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Admin Panel Page -->
+    <section id="admin-page" class="page">
+      <h1>Admin Panel</h1>
+      
+      <div id="admin-permission-error" class="error-message hidden">
+        <i class="fas fa-exclamation-triangle"></i>
+        <span>You don't have admin privileges. Only administrators can access this panel.</span>
+      </div>
+      
+      <div id="admin-message" class="message hidden"></div>
+      
+      <div class="admin-grid">
+        <div class="card">
+          <div class="card-header">
+            <i class="fas fa-user-plus"></i>
+            <h2>Add Teacher</h2>
+          </div>
+          
+          <form id="add-teacher-form">
+            <div class="form-group">
+              <label for="teacher-address">Teacher Wallet Address</label>
+              <input type="text" id="teacher-address" placeholder="0x..." required>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-block">Add Teacher</button>
+          </form>
+        </div>
+        
+        <div class="card">
+          <div class="card-header">
+            <i class="fas fa-user-minus"></i>
+            <h2>Remove Teacher</h2>
+          </div>
+          
+          <form id="remove-teacher-form">
+            <div class="form-group">
+              <label for="remove-address">Teacher Wallet Address</label>
+              <input type="text" id="remove-address" placeholder="0x..." required>
+            </div>
+            
+            <button type="submit" class="btn btn-danger btn-block">Remove Teacher</button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="card mt-20">
+        <div class="card-header">
+          <i class="fas fa-info-circle"></i>
+          <h2>System Information</h2>
+        </div>
+        
+        <div class="info-container">
+          <p><strong>Contract Address:</strong> <span id="contract-address" class="monospace"></span></p>
+          <p><strong>Network:</strong> <span id="network-info"></span></p>
+          <p><strong>Your Role:</strong> <span id="user-role" class="badge">Administrator</span></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <i class="fas fa-graduation-cap"></i>
+          <span>BlockEdu Results</span>
+        </div>
+        
+        <div class="footer-text">
+          <p>Trust your Grades. Powered by Blockchain, Potected Forever</p>
+          <p class="copyright">© <span id="current-year"></span> BlockEdu. All rights reserved.</p>
+        </div>
+        
+        <div class="footer-social">
+          <a href="https://github.com/Nuthanmc"><i class="fab fa-github"></i></a>
+          <a href="https://x.com/NuthanMC294271"><i class="fab fa-x"></i></a>
+          <a href="https://www.linkedin.com/in/nuthan-m-c-700169257/"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>
