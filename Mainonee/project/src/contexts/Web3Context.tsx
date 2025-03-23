@@ -50,7 +50,7 @@ export const Web3Provider: React.FC<Web3ProviderProps> = ({ children }) => {
 
       // Check if on correct network
       const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-      setIsCorrectNetwork(chainId === '0x13881'); // Mumbai Testnet
+      setIsCorrectNetwork(chainId === '0xaa36a7'); // Sepolia Testnet
     } catch (error) {
       console.error('Error connecting wallet:', error);
       alert('Error connecting wallet. Please try again.');
@@ -65,7 +65,7 @@ export const Web3Provider: React.FC<Web3ProviderProps> = ({ children }) => {
     try {
       await window.ethereum.request({
         method: 'wallet_switchEthereumChain',
-        params: [{ chainId: '0x13881' }], // Mumbai Testnet
+        params: [{ chainId: '0xaa36a7' }], // Sepolia Testnet
       });
     } catch (error: any) {
       // If the chain hasn't been added to MetaMask
@@ -75,20 +75,20 @@ export const Web3Provider: React.FC<Web3ProviderProps> = ({ children }) => {
             method: 'wallet_addEthereumChain',
             params: [
               {
-                chainId: '0x13881',
-                chainName: 'Polygon Mumbai Testnet',
+                chainId: '0xaa36a7',
+                chainName: 'Ethereum Sepolia Testnet',
                 nativeCurrency: {
-                  name: 'MATIC',
-                  symbol: 'MATIC',
+                  name: 'Sepolia ETH',
+                  symbol: 'ETH',
                   decimals: 18,
                 },
-                rpcUrls: ['https://rpc-mumbai.maticvigil.com'],
-                blockExplorerUrls: ['https://mumbai.polygonscan.com'],
+                rpcUrls: ['https://rpc.sepolia.org'],
+                blockExplorerUrls: ['https://sepolia.etherscan.io'],
               },
             ],
           });
         } catch (addError) {
-          console.error('Error adding Mumbai network:', addError);
+          console.error('Error adding Sepolia network:', addError);
         }
       }
     }
@@ -105,7 +105,7 @@ export const Web3Provider: React.FC<Web3ProviderProps> = ({ children }) => {
             setIsConnected(true);
 
             const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-            setIsCorrectNetwork(chainId === '0x13881');
+            setIsCorrectNetwork(chainId === '0xaa36a7');
           }
         } catch (error) {
           console.error('Error checking connection:', error);
@@ -128,7 +128,7 @@ export const Web3Provider: React.FC<Web3ProviderProps> = ({ children }) => {
       });
 
       window.ethereum.on('chainChanged', (chainId: string) => {
-        setIsCorrectNetwork(chainId === '0x13881');
+        setIsCorrectNetwork(chainId === '0xaa36a7');
       });
     }
 

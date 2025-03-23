@@ -183,7 +183,7 @@ const AdminPanel: React.FC = () => {
           </p>
           <p className="mb-2">
             <span className="font-medium">Network:</span>{' '}
-            <span>Polygon {window.ethereum?.chainId === '0x89' ? 'Mainnet' : 'Mumbai Testnet'}</span>
+            <span>Polygon {window.ethereum?.chainId === '0xaa36a7' ? 'Sepolia Testnet' : 'Unknown Network'}</span>
           </p>
           <p>
             <span className="font-medium">Your Role:</span>{' '}

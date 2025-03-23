@@ -43,6 +43,9 @@ const StudentResultSystemABI = [
 const ADMIN_ROLE = ethers.keccak256(ethers.toUtf8Bytes("ADMIN_ROLE"));
 const TEACHER_ROLE = ethers.keccak256(ethers.toUtf8Bytes("TEACHER_ROLE"));
 
+// Network constants
+const SEPOLIA_CHAIN_ID = '0xaa36a7';
+
 // Global state
 const state = {
   account: null,
@@ -137,7 +140,7 @@ function initWeb3() {
   // Connect wallet buttons
   document.getElementById('connect-wallet').addEventListener('click', connectWallet);
   document.getElementById('connect-wallet-btn').addEventListener('click', connectWallet);
-  document.getElementById('switch-network').addEventListener('click', switchToMumbai);
+  document.getElementById('switch-network').addEventListener('click', switchToSepolia);
   
   // Check if MetaMask is installed
   if (window.ethereum) {
@@ -244,14 +247,12 @@ async function checkNetwork() {
   
   try {
     const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-    // Polygon Mainnet: 0x89, Mumbai Testnet: 0x13881
-    state.isCorrectNetwork = chainId === '0x89' || chainId === '0x13881';
+    // Sepolia Testnet: 0xaa36a7
+    state.isCorrectNetwork = chainId === SEPOLIA_CHAIN_ID;
     
     // Update network info display
-    if (chainId === '0x89') {
-      document.getElementById('network-info').textContent = 'Polygon Mainnet';
-    } else if (chainId === '0x13881') {
-      document.getElementById('network-info').textContent = 'Polygon Mumbai Testnet';
+    if (chainId === SEPOLIA_CHAIN_ID) {
+      document.getElementById('network-info').textContent = 'Ethereum Sepolia Testnet';
     } else {
       document.getElementById('network-info').textContent = 'Unknown Network';
     }
@@ -269,8 +270,8 @@ async function handleChainChanged() {
   window.location.reload();
 }
 
-// Switch to Mumbai Testnet
-async function switchToMumbai() {
+// Switch to Sepolia Testnet
+async function switchToSepolia() {
   if (!window.ethereum) {
     alert('MetaMask is not installed');
     return;
@@ -279,7 +280,7 @@ async function switchToMumbai() {
   try {
     await window.ethereum.request({
       method: 'wallet_switchEthereumChain',
-      params: [{ chainId: '0x13881' }], // Mumbai Testnet
+      params: [{ chainId: SEPOLIA_CHAIN_ID }], // Sepolia Testnet
     });
   } catch (error) {
     // If the chain hasn't been added to MetaMask
@@ -289,20 +290,20 @@ async function switchToMumbai() {
           method: 'wallet_addEthereumChain',
           params: [
             {
-              chainId: '0x13881',
-              chainName: 'Polygon Mumbai Testnet',
+              chainId: SEPOLIA_CHAIN_ID,
+              chainName: 'Ethereum Sepolia Testnet',
               nativeCurrency: {
-                name: 'MATIC',
-                symbol: 'MATIC',
+                name: 'Sepolia ETH',
+                symbol: 'ETH',
                 decimals: 18,
               },
-              rpcUrls: ['https://rpc-mumbai.maticvigil.com'],
-              blockExplorerUrls: ['https://mumbai.polygonscan.com'],
+              rpcUrls: ['https://rpc.sepolia.org'],
+              blockExplorerUrls: ['https://sepolia.etherscan.io'],
             },
           ],
         });
       } catch (addError) {
-        console.error('Error adding Mumbai network:', addError);
+        console.error('Error adding Sepolia network:', addError);
       }
     } else {
       console.error('Error switching network:', error);

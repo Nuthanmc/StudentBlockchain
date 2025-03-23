@@ -1,4 +1,4 @@
-import { ethers, Eip1193Provider } from 'ethers';
+import { ethers, Eip1193Provider, isAddress } from 'ethers';
 
 // Contract address from environment variable
 const contractAddress = import.meta.env.VITE_CONTRACT_ADDRESS;
@@ -117,14 +117,25 @@ export const getStudentResultIds = async (studentId: string) => {
 
 // Add a teacher (admin only)
 export const addTeacher = async (teacherAddress: string) => {
+  if (!isAddress(teacherAddress)) {
+    throw new Error('Invalid Ethereum address');
+  }
+
   try {
     const contract = await getContract(true);
     const tx = await contract.addTeacher(teacherAddress);
     await tx.wait();
     return tx;
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error adding teacher:', error);
-    throw error;
+
+    if (error.code === 'UNPREDICTABLE_GAS_LIMIT') {
+      throw new Error('Transaction may fail due to gas estimation issues. Please check the contract and permissions.');
+    } else if (error.code === 'CALL_EXCEPTION') {
+      throw new Error('Call exception occurred. Ensure the account has the necessary permissions.');
+    } else {
+      throw new Error(`Error adding teacher: ${error.message || 'Please try again'}`);
+    }
   }
 };
 
@@ -141,7 +152,7 @@ export const removeTeacher = async (teacherAddress: string) => {
   }
 };
 
-// Verify if the current network is Polygon/Mumbai
+// Verify if the current network is Sepolia
 export const checkNetwork = async () => {
   if (!window.ethereum) return false;
   
@@ -155,7 +166,7 @@ export const checkNetwork = async () => {
 };
 
 
-// Switch to Polygon Mumbai Testnet
+// Switch to Sepolia Testnet
 export const switchToSepolia = async () => {
   if (!window.ethereum) throw new Error('MetaMask is not installed');
   
