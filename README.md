@@ -1,96 +1,98 @@
-# Student Result Monitoring System Using Blockchain Technology on Polygon
+StudentBlockchain - Secure Student Result Management
+Overview
+StudentBlockchain is a blockchain-based system for securely managing and verifying student academic results. Built on the Polygon network, it ensures transparency, security, and immutability of academic records.
 
-This project implements a secure and transparent system for managing student academic results using blockchain technology on the Polygon network.
+Features
+Secure student result storage on the blockchain.
 
-## Features
+Immutable and tamper-proof record verification.
 
-- **Immutable Records**: Once uploaded to the blockchain, result records cannot be altered or tampered with.
-- **Decentralized Storage**: Results are stored on the Polygon blockchain and IPFS.
-- **Role-Based Access Control**: Only authorized teachers and administrators can upload results.
-- **Verification System**: Students can verify the authenticity of their results.
-- **MetaMask Integration**: Secure authentication using Web3 wallets.
+Smart contract-based automation for result validation.
 
-## Technology Stack
+Decentralized and transparent access.
 
-- **Blockchain**: Polygon (Mumbai Testnet/Mainnet)
-- **Smart Contracts**: Solidity
-- **Frontend**: React, TypeScript, Tailwind CSS
-- **Web3 Integration**: ethers.js, Web3Modal
-- **Decentralized Storage**: IPFS via Infura
-- **Development Tools**: Hardhat, Vite
+Tech Stack
+Frontend: HTML, CSS, JavaScript
 
-## Getting Started
+Backend: Node.js, Express.js
 
-### Prerequisites
+Blockchain: Solidity (Smart Contracts), Polygon Mumbai Testnet
 
-- Node.js and npm
-- MetaMask browser extension
-- Polygon Mumbai Testnet account with MATIC tokens (for testing)
+Storage: IPFS (for storing result hashes)
 
-### Installation
+Testing: Hardhat, Mocha, Chai
 
-1. Clone the repository:
-   ```
-   git clone https://github.com/yourusername/student-result-blockchain.git
-   cd student-result-blockchain
-   ```
+Deployment: GitHub Actions CI/CD, Hardhat
 
-2. Install dependencies:
-   ```
-   npm install
-   ```
+Prerequisites
+Node.js (>=14.x)
 
-3. Create a `.env` file based on `.env.example` and fill in your configuration:
-   ```
-   cp .env.example .env
-   ```
+MetaMask Extension (Chrome/Firefox)
 
-4. Compile the smart contracts:
-   ```
-   npm run compile
-   ```
+Hardhat (npx hardhat)
 
-5. Deploy the smart contracts to Mumbai Testnet:
-   ```
-   npm run deploy:mumbai
-   ```
+Polygon Mumbai Testnet Faucet (Get free MATIC)
 
-6. Update the contract address in your `.env` file:
-   ```
-   VITE_CONTRACT_ADDRESS=your_deployed_contract_address
-   ```
+Setup Guide
+Step 1: Clone Repository
+sh
+Copy
+Edit
+git clone https://github.com/Nuthanmc/StudentBlockchain.git  
+cd StudentBlockchain  
+Step 2: Install Dependencies
+sh
+Copy
+Edit
+npm install  
+Step 3: Configure Environment Variables
+Create a .env file in the root directory and add the following:
 
-7. Start the development server:
-   ```
-   npm run dev
-   ```
+ini
+Copy
+Edit
+PRIVATE_KEY=your_wallet_private_key  
+INFURA_API_KEY=your_infura_project_id  
+POLYGONSCAN_API_KEY=your_polygonscan_api_key  
+Do not share your private key. Use environment variables for security.
 
-## Usage
+Step 4: Compile Smart Contracts
+sh
+Copy
+Edit
+npx hardhat compile  
+Step 5: Deploy Smart Contracts
+sh
+Copy
+Edit
+npx hardhat run scripts/deploy.js --network mumbai  
+Save the deployed contract address.
 
-### For Administrators
+Step 6: Run the Frontend
+sh
+Copy
+Edit
+npm run dev  
+Access the app at http://localhost:3000.
 
-1. Connect your MetaMask wallet (must be the deployer of the contract)
-2. Navigate to the Admin Panel to add or remove teachers
+Testing
+To run unit tests:
 
-### For Teachers
+sh
+Copy
+Edit
+npx hardhat test  
+Security Measures
+Sensitive data stored in .env (not in code).
 
-1. Connect your MetaMask wallet (must be authorized by an admin)
-2. Navigate to the Upload Results page to add new student results
+MetaMask authentication for transactions.
 
-### For Students
+Input validation to prevent injection attacks.
 
-1. Navigate to the View Results page
-2. Enter your student ID to view your results
-3. Verify the authenticity of results using blockchain verification
+CI/CD - Automated Deployment
+GitHub Actions configured for contract deployment.
 
-## Smart Contract Architecture
+Auto-linting and testing before merging PRs.
 
-The system uses a single smart contract (`StudentResultSystem.sol`) that implements:
-
-- Role-based access control (Admin and Teacher roles)
-- Result storage and retrieval functions
-- Verification mechanisms
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+License
+MIT License
