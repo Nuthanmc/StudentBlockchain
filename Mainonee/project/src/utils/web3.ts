@@ -52,7 +52,7 @@ export const getContract = async (withSigner = false) => {
   }
 
   try {
-    // Use MetaMask provider with SepoliaETH
+    // Use MetaMask provider with Mumbai
     const provider = new ethers.BrowserProvider(window.ethereum as Eip1193Provider);
     
     if (withSigner) {
@@ -152,13 +152,12 @@ export const removeTeacher = async (teacherAddress: string) => {
   }
 };
 
-// Verify if the current network is Sepolia
+// Verify if the current network is Mumbai
 export const checkNetwork = async () => {
   if (!window.ethereum) return false;
-  
   try {
     const chainId = await (window.ethereum as Eip1193Provider).request({ method: 'eth_chainId' });
-    return chainId === '0xaa36a7'; // Sepolia Testnet
+    return chainId === '0x13881'; // Mumbai Testnet (80001)
   } catch (error) {
     console.error('Error checking network:', error);
     return false;
@@ -166,14 +165,15 @@ export const checkNetwork = async () => {
 };
 
 
-// Switch to Sepolia Testnet
-export const switchToSepolia = async () => {
+
+// Switch to Mumbai Testnet
+export const switchToMumbai = async () => {
   if (!window.ethereum) throw new Error('MetaMask is not installed');
   
   try {
     await (window.ethereum as Eip1193Provider).request({
       method: 'wallet_switchEthereumChain',
-      params: [{ chainId: '0xaa36a7' }], // Sepolia Testnet
+      params: [{ chainId: '0x13881' }], // Mumbai Testnet
     });
   } catch (error: any) {
     // If the chain hasn't been added to MetaMask, prompt user to add it
@@ -182,15 +182,15 @@ export const switchToSepolia = async () => {
         method: 'wallet_addEthereumChain',
         params: [
           {
-            chainId: '0xaa36a7',
-            chainName: 'Ethereum Sepolia Testnet',
+            chainId: '0x13881',
+            chainName: 'Polygon Mumbai Testnet',
             nativeCurrency: {
-              name: 'SepoliaETH',
-              symbol: 'ETH',
+              name: 'MATIC',
+              symbol: 'MATIC',
               decimals: 18,
             },
-            rpcUrls: ['https://rpc.sepolia.org'],
-            blockExplorerUrls: ['https://sepolia.etherscan.io'],
+            rpcUrls: ['https://rpc-mumbai.maticvigil.com'],
+            blockExplorerUrls: ['https://mumbai.polygonscan.com'],
           },
         ],
       });

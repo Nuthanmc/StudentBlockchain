@@ -2,13 +2,13 @@ import { config as dotenvConfig } from 'dotenv';
 import { HardhatUserConfig } from 'hardhat/config';
 import '@nomicfoundation/hardhat-toolbox';
 
-dotenvConfig();
+dotenvConfig(); 
 
 const PRIVATE_KEY = process.env.PRIVATE_KEY || "0x0000000000000000000000000000000000000000000000000000000000000000";
 const MUMBAI_RPC_URL = process.env.MUMBAI_RPC_URL || "https://rpc-mumbai.maticvigil.com";
 const POLYGON_RPC_URL = process.env.POLYGON_RPC_URL || "https://polygon-rpc.com";
 
-const config: HardhatUserConfig = {
+const config = {
   solidity: "0.8.20",
   networks: {
     hardhat: {},

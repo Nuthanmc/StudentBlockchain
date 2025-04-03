@@ -16,27 +16,28 @@ const AdminPanel: React.FC = () => {
   
   const handleAddTeacher = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+  
     if (!teacherAddress) {
-      setError('Please enter a teacher address');
+      setError("Please enter a teacher address");
       return;
     }
-    
+  
     setLoading(true);
     setError('');
     setSuccess('');
-    
+  
     try {
-      await addTeacher(teacherAddress);
+      await addTeacher(teacherAddress); // Use the imported function
       setSuccess(`Teacher ${teacherAddress} added successfully`);
       setTeacherAddress('');
     } catch (error) {
-      console.error('Error adding teacher:', error);
-      setError('Error adding teacher. Please try again.');
+      setError("Error adding teacher. Please try again.");
     } finally {
       setLoading(false);
     }
   };
+  // Function to handle removing a teacher  
+  
   
   const handleRemoveTeacher = async (e: React.FormEvent) => {
     e.preventDefault();
